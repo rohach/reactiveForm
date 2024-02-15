@@ -1,0 +1,164 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      <h1 class="mb-3">Reactive Form</h1>
+      <form [formGroup]="userForm" (ngSubmit)="userSubmit()">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="your-name" class="form-label">Your Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="your-name"
+              name="your-name"
+              formControlName="firstName"
+              [class.is-invalid]="
+                userForm.get('firstName')?.invalid &&
+                userForm.get('firstName')?.touched
+              "
+            />
+            <small
+              class="text-danger"
+              *ngIf="userForm.get('firstName')?.errors?.['required'] &&
+                userForm.get('firstName')?.touched"
+              >All fields required*</small
+            >
+            <small
+              class="text-danger"
+              *ngIf="
+                userForm.get('firstName')?.errors?.['noSpaceAllowed']
+              "
+              >No space allowed*</small
+            >
+            <small
+              class="text-danger"
+              *ngIf="userForm.get('firstName')?.errors?.['nameLengthError']"
+            >
+              Name cannot exceede 15 characters*
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label for="your-surname" class="form-label">Your Surname</label>
+            <input
+              type="text"
+              class="form-control"
+              id="your-surname"
+              name="your-surname"
+              formControlName="lastName"
+              required
+              [class.is-invalid]="
+                userForm.get('lastName')?.invalid &&
+                userForm.get('lastName')?.touched
+              "
+            />
+            <small
+              class="text-danger"
+              *ngIf="userForm.get('lastName')?.errors?.['required'] &&
+                userForm.get('lastName')?.touched"
+              >All fields required*</small
+            >
+            <small
+              class="text-danger"
+              *ngIf="userForm.get('lastName')?.errors?.['noSpaceAllowed']"
+            >
+              No space allowed*
+            </small>
+            <small
+              class="text-danger"
+              *ngIf="userForm.get('lastName')?.errors?.['surnameLengthError']"
+            >
+              Name cannot exceede 20 characters*
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label for="your-email" class="form-label">Your Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="your-email"
+              name="your-email"
+              formControlName="email"
+              required
+              [class.is-invalid]="
+                userForm.get('email')?.invalid && userForm.get('email')?.touched
+              "
+            />
+            <small
+              class="text-danger"
+              *ngIf="userForm.get('email')?.errors?.['required'] &&
+                userForm.get('email')?.touched"
+              >All fields required*</small
+            >
+            <small
+              class="text-danger"
+              *ngIf="userForm.get('email')?.errors?.['patternError'] && userForm.get('email')?.dirty"
+            >
+              Incorrect email format*</small
+            >
+          </div>
+          <div class="col-md-6">
+            <label for="your-subject" class="form-label">Your Subject</label>
+            <input
+              type="text"
+              class="form-control"
+              id="your-subject"
+              name="your-subject"
+              formControlName="subject"
+              [class.is-invalid]="
+                userForm.get('subject')?.invalid &&
+                userForm.get('subject')?.touched
+              "
+            />
+            <small
+              class="text-danger"
+              *ngIf="userForm.get('subject')?.errors?.['required'] &&
+                userForm.get('subject')?.touched"
+              >All fields required*</small
+            >
+          </div>
+          <div class="col-12">
+            <label for="your-message" class="form-label">Your Message</label>
+            <textarea
+              class="form-control"
+              id="your-message"
+              name="your-message"
+              rows="5"
+              formControlName="message"
+              required
+              [class.is-invalid]="
+                userForm.get('message')?.invalid &&
+                userForm.get('message')?.touched
+              "
+            >
+            </textarea>
+            <small
+              class="text-danger"
+              *ngIf="userForm.get('message')?.errors?.['required'] &&
+                userForm.get('message')?.touched"
+              >All fields required*</small
+            >
+            <small
+              class="text-danger"
+              *ngIf="userForm.get('message')?.errors?.['lengthError']"
+            >
+              Message cannot exceede 250 characters*
+            </small>
+          </div>
+          <div class="col-12">
+            <div class="row">
+              <div class="col-md-6">
+                <button
+                  data-res="<?php echo $sum; ?>"
+                  type="submit"
+                  class="btn btn-dark w-100 fw-bold"
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
